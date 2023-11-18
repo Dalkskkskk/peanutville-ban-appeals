@@ -19,14 +19,14 @@ export async function handler(event, context) {
         const params = new URLSearchParams(event.body);
         payload = {
             banReason: params.get("banReason") || undefined,
-            appealText: params.get("appealText") || undefined,
+            appealSection: params.get("appealSection") || undefined,
             futureActions: params.get("futureActions") || undefined,
             token: params.get("token") || undefined
         };
     }
 
     if (payload.banReason !== undefined &&
-        payload.appealText !== undefined &&
+        payload.appealSection !== undefined &&
         payload.futureActions !== undefined && 
         payload.token !== undefined) {
         
@@ -47,15 +47,15 @@ export async function handler(event, context) {
                 fields: [
                     {
                         name: "Submitter",
-                        value: `<@${userInfo.id}> (${userInfo.username}#${userInfo.discriminator})`
+                        value: `<@${userInfo.id}> (${userInfo.username}#${userInfo.discriminator} | ID: ${userInfo.id})`
                     },
                     {
                         name: "Why were you banned?",
                         value: payload.banReason.slice(0, MAX_EMBED_FIELD_CHARS)
                     },
                     {
-                        name: "Why do you feel you should be unbanned?",
-                        value: payload.appealText.slice(0, MAX_EMBED_FIELD_CHARS)
+                        name: "Why do you want to be unbanned?",
+                        value: payload.appealSection.slice(0, MAX_EMBED_FIELD_CHARS)
                     },
                     {
                         name: "What will you do to avoid being banned in the future?",
