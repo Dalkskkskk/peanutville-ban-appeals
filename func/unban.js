@@ -1,4 +1,4 @@
-import { decodeJwt } from "./helpers/jwt-helpers.js";
+rorimport { decodeJwt } from "./helpers/jwt-helpers.js";
 import { unbanUser } from "./helpers/user-helpers.js";
 
 export async function handler(event, context) {
@@ -24,7 +24,7 @@ export async function handler(event, context) {
                 return {
                     statusCode: 303,
                     headers: {
-                        "Location": `/error?msg=${encodeURIComponent("Failed to unban user\nPlease manually unban")}`
+                        "Location": `/error?msg=${encodeURIComponent("**Error:** Failed to unban user\nPlease manually unban user\nAfter that, please contact user and let them know that they have been unbanned.")}`
                     }
                 };
             }
